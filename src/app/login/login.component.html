@@ -1,0 +1,23 @@
+<div class="container">
+        <hr>
+        <form #form="ngForm" (submit)="onSubmit(form)">
+            <div class="form-group"><br>
+                <label style="font-size: medium">Korisnično ime</label>
+                <input type="text" class="form-control form-control-lg" #KorisničkoIme="ngModel" name="email"
+                    style="font-size: x-larger;" [(ngModel)]="service.formData.email">
+            </div><br>
+            <div class="form-group">
+                <label style="font-size: medium">Password</label>
+                <input type="password" class="form-control form-control-lg" #Password="ngModel" name="password"
+                    style="font-size: x-larger;" [(ngModel)]="service.formData.password">
+            </div><br>
+            <div class="form-row text-center">
+                <div>
+                    <button type="submit" class="btn btn-secondary btn-lg btn-block position-center"
+                        style="font-size: x-large">PRIJAVI SE</button>
+                </div><br>
+            </div>
+            <router-outlet></router-outlet>
+        </form>
+        <hr>
+</div>

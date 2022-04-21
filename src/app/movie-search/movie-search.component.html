@@ -1,0 +1,8 @@
+<div class="card">
+	<img [src]="movie?.Poster" class="card-img-top" [alt]="movie?.Title">
+	<div class="card-body">
+		<h5 class="card-title">{{ movie?.Title | uppercase}}</h5>
+		<p class="card-text"> {{ movie?.Title }} is a {{ movie?.Type }}, released {{ movie?.Year }}.</p>
+		<a routerLink="movie" [queryParams]="{ movieId: movie?.imdbID }" class="btn btn-secondary" (click)="saveToBase(movie)"> Details </a>
+	</div>
+</div>

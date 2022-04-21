@@ -1,1 +1,112 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~bootstrap/dist/css/bootstrap.css";
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+mat-sidenav-container {
+    height: 100%;
+}
+
+mat-sidenav {
+    font-size: x-large;
+    background-color: rgb(0, 0, 0);
+    max-width: 300px;
+    padding: 20px;
+    line-height: 1.8;
+}
+
+.Items {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+mat-toolbar {
+    background-color: transparent;
+    border-style: solid;
+    border-bottom-color: #07070742;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    padding-bottom: 0.7%;
+    justify-content: space-between;
+    position: fixed;
+}
+
+span.logo {
+  height: 90%;
+  min-width: 250px;
+  background: url(./assets/Images/logoFull.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+span.menu_button {
+    position: end;
+}
+
+.card {
+    margin-bottom: 15px;
+    min-height: 425px;
+    max-height: 450px;
+  }
+  
+.card-img-top {
+    height: 300px;
+    object-fit: cover;
+  }
+
+.submenu {
+    overflow-y: hidden;
+    transition: transform 300ms ease;
+    transform: scaleY(0);
+    transform-origin: top;
+    padding-left: 30px;
+  }
+
+.submenu.expanded {
+    transform: scaleY(1);
+  }
+
+.menu-button {
+    transition: 300ms ease-in-out;
+    transform: rotate(0deg);
+  }
+
+.menu-button.rotated {
+    transform: rotate(180deg);
+  }
+
+.avatar {
+    margin-top: 16px;
+    width: 100px;
+    height: 100px;
+}
+
+mat-icon {
+    transform: scale(1.3);
+    margin-right: 15px;
+}
+
+.designation {
+    margin-top: 2px;
+    font-size: 0.7rem;
+    color: gray;
+}
+
+mat-divider {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    background-color: black;
+}
+

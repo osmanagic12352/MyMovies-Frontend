@@ -1,0 +1,9 @@
+<form #form="ngForm" (submit)="onSubmit(form)" novalidate><br>
+    <input type="text" class="form-control form-control-lg" #listName="ngModel" placeholder="Whrite your list name" name="listName" style="font-size: x-larger;" 
+        [(ngModel)]="service.formData.listName" minlength="3" required [class.invalid]="listName.invalid && listName.touched">
+        <span class="help-block" *ngIf="listName.invalid && listName.touched">*Whrite a List name!</span><br>
+    <div>
+        <button type="submit" class="btn btn-secondary position-center" style="font-size: x-large" [disabled]="form.invalid">Add</button> 
+    </div>
+</form>        
+

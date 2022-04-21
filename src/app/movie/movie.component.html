@@ -1,0 +1,46 @@
+<div class="container" *ngIf="movieDetils$ | async as movie">
+    <div class="col-md-4">
+        <img id="img1" src="{{movie.Poster}}">
+    </div>
+    <div class="col-md-8">
+        <h2>{{movie.Title}}</h2>
+        <hr>
+        <ul class="list-group">
+            <li class="list-group-item"><strong>Žanr: </strong>{{movie.Genre}}</li>
+            <li class="list-group-item"><strong>Prikazan: </strong>{{movie.Released}}</li>
+            <li class="list-group-item"><strong>Država: </strong>{{movie.Country}}</li>
+            <li class="list-group-item"><strong>IMDB Rating: </strong>{{movie.imdbRating}}</li>
+            <li class="list-group-item"><strong>Redatelj: </strong>{{movie.Director}}</li>
+            <li class="list-group-item"><strong>Glumci: </strong>{{movie.Actors}}</li>
+            <br>
+
+        </ul>
+    </div>
+    <br>
+    <div class="row">
+        <div class="well">
+            <h3>Radnja filma</h3>
+            {{movie.Plot}}
+            <hr>
+        </div>
+    </div>
+    <div class="row" *ngIf="logedUser">
+        <button type="button" class="btn btn-success" (click)="addToFavorite(movie.imdbID)">+ Add to favorites</button><hr>
+    </div>
+    <div class="row" *ngIf="logedUser">
+        <mat-form-field appearance="fill" >
+            <mat-label>Add to other list</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let list of serviceM.usersList" [value]="list.listName">
+                {{list.listName}}
+              </mat-option>
+              <mat-option routerLink="/usersLists">
+               + Add new list
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div *ngFor="let list of serviceM.usersList">
+            <button class="btn btn-success" (click)="addToUsersList(list.id, movie.imdbID)">Add to list</button>
+          </div>
+          <hr>
+    </div>
