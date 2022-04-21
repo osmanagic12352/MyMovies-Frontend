@@ -28,22 +28,13 @@ export class MovieComponent implements OnInit {
   ngOnInit() {
     this.serviceM.getUsersList();
 
+    this.showDetails();
+  }
+
+  showDetails(){
     this.movieDetils$ = this.route.queryParams.pipe(
       map(queryParams => queryParams["movieId"]),
-      switchMap(imdbId => this.serviceM.getMovieDetails(imdbId)),
-      switchMap((movie: MovieDetail) =>
-        this.serviceM.searchMovie(movie.Title).pipe(
-          map((similarMovies: Array<Movie>) =>
-            similarMovies.filter(
-              (similarMovie: Movie) => similarMovie.Title !== movie.Title
-            )
-          ),
-          map((similarMovies: Array<Movie>) => ({
-            ...movie,
-            similarMovies
-          }))
-        )
-      )
+      switchMap(imdbId => this.serviceM.getMovieDetails(imdbId))
     );
   }
 
