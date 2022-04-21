@@ -12,7 +12,7 @@ export class UserService {
   userDetails: any;
   formData: User = new User();
   list: User[] = [];
-  readonly BaseURL = "http://localhost:5001/api/ApplicationUser/Registracija_User"
+  readonly BaseURL = "http://localhost:5002/api/User/registerUser"
   
   
   postUser(){
@@ -20,11 +20,11 @@ export class UserService {
   }
 
   putUser(){
-    return this.http.put(`${'http://localhost:5001/api/ApplicationUser/Edit-user-details'}/${this.formData.id}`, this.formData);
+    return this.http.put(`${'http://localhost:5002/api/User/editUser_ById'}/${this.formData.id}`, this.formData);
   }
 
   listUsers(){
-    this.http.get('http://localhost:5001/api/ApplicationUser/get-all-users').subscribe(
+    this.http.get('http://localhost:5002/api/User/getAllUsers').subscribe(
       (res) => {
         this.list = res as User[];
       },
@@ -34,7 +34,7 @@ export class UserService {
   }
 
   deleteUser(id:string){
-    return this.http.delete('http://localhost:5001/api/ApplicationUser/Delete-user/' + id);
+    return this.http.delete('http://localhost:5002/api/User/deleteUser_ById/' + id);
   }
 
   put1User(){

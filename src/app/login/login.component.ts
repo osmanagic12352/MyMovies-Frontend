@@ -27,8 +27,6 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token',res.token);
         this.toastr.success('Logiranje','Uspješno')
         this.router.navigate(['/']);
-
-
       },
       err => {
         console.log(err);

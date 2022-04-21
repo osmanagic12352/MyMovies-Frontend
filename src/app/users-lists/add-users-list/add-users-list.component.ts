@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UsersList } from 'src/app/shared/models/usersList.model';
 import { MovieService } from 'src/app/shared/movie.service';
@@ -12,7 +13,7 @@ import { MovieService } from 'src/app/shared/movie.service';
 })
 export class AddUsersListComponent implements OnInit {
 
-  constructor(public service: MovieService, private toastr:ToastrService) { }
+  constructor(public service: MovieService, private toastr:ToastrService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -22,6 +23,7 @@ export class AddUsersListComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.toastr.success('Success');
+        this.router.navigate(['/usersLists']);
       },
       err => {
         console.log(err);

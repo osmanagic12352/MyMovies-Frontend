@@ -55,7 +55,7 @@ export class MovieService {
   }
 
   addUsersList(): Observable<any>{
-    return this.http.post('http://localhost:5002/api/UsersLists/addUsersList', this.usersList);
+    return this.http.post('http://localhost:5002/api/UsersLists/addUsersList', this.formData);
   }
 
   addUsersListMovie(id: any, imdbId: string): Observable<any>{

@@ -1,1 +1,35 @@
-<p>register works!</p>
+<div class="container">
+    <form #form="ngForm" (submit)="onSubmit(form)" novalidate>    
+    <div class="form-group"><br>
+        <label style="font-size: medium">Username</label>
+        <input type="text" class="form-control form-control-lg" #userName="ngModel" placeholder="Username" name="userName" style="font-size: x-larger;" 
+               [(ngModel)]="service.formData.userName" minlength="3" required [class.invalid]="userName.invalid && userName.touched">
+        <span class="help-block" *ngIf="userName.invalid && userName.touched">*Upišite korisničko ime!</span>
+    </div><br>
+    <div class="form-group">
+        <label style="font-size: medium">Email</label>
+        <input type="text" class="form-control form-control-lg" #email="ngModel" placeholder="e-mail adress" name="email" style="font-size: x-larger;" 
+               [(ngModel)]="service.formData.email" pattern="^[a-z0-9.]+@[a-z0-9.]+\.[a-z]{2,3}$" required [class.invalid]="email.invalid && email.touched">
+               <span class="help-block" *ngIf="email.invalid && email.touched">*Neispravana email adresa!</span>
+    </div><br>
+    <div class="form-group">
+        <label style="font-size: medium">Full Name</label>
+        <input type="text" class="form-control form-control-lg" #fullName="ngModel" placeholder="Full Name" name="fullName" style="font-size: x-larger;"
+               pattern="^[a-zA-Z čćžđšČĆŽĐŠ]+\s[a-zA-Z čćžđšČĆŽĐŠ]{1,}$" minlength="3" [(ngModel)]="service.formData.fullName" required [class.invalid]="fullName.invalid && fullName.touched">
+               <span class="help-block" *ngIf="fullName.errors?.['pattern']">*Potrebno je upisati puno ime i prezime<br></span>
+               <span class="help-block" *ngIf="fullName.invalid && fullName.touched">*Upišite naziv vlasnika kartice!</span>
+    </div><br>
+    <div class="form-group">
+        <label style="font-size: medium">Password</label>
+        <input type="password" class="form-control form-control-lg" pattern="(?=.*\d)(?=.*[a-z]).{6,}" placeholder="password" #password="ngModel" name="password" style="font-size: x-larger;" 
+               [(ngModel)]="service.formData.password" required [class.invalid]="password.invalid && password.touched">
+               <span class="help-block" *ngIf="password.errors?.['pattern']">*Password must have 6 caracters, min. 1 nummber!<br></span>
+               <span class="help-block" *ngIf="password.invalid && password.touched">*Password required!</span>
+    </div><br>
+    <div class="form-row text-center">
+        <div>
+            <button type="submit" class="btn btn-secondary position-center" style="font-size: x-large" [disabled]="form.invalid">IZRADI RAČUN</button> 
+        </div><br>
+    </div> 
+</form> 
+</div>       
