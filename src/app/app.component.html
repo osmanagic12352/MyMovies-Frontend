@@ -26,7 +26,7 @@
     </mat-list-item>
     <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent" *ngIf="logedUser" routerLink="usersLists"
       routerLinkActive="active">
-      <span class="full-width" *ngIf="isExpanded || isShowing">Show More Lists</span>
+      <a class="full-width" *ngIf="isExpanded || isShowing">Show More Lists</a>
       <mat-icon mat-list-icon>bookmarks</mat-icon>
       <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}" *ngIf="isExpanded || isShowing">expand_more
       </mat-icon>
@@ -40,13 +40,17 @@
       </div>
     </div>
     <mat-list-item *ngIf="logedUser">
+      <mat-icon>movie</mat-icon>
+      <a routerLink="usersMovie" routerLinkActive="active">Add a Movie</a>
+    </mat-list-item><br>
+    <mat-list-item *ngIf="logedUser">
       <mat-icon>exit_to_app</mat-icon>
-      <span (click)="onLogout()">Logout</span>
+      <a (click)="onLogout()">Logout</a>
     </mat-list-item>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar>
-      <span class="logo" routerLink="/">
+      <span class="logo" routerLink="/" (click)="refresh()">
       </span>
       <span class="menu_button">
         <button mat-icon-button (click)="opened=!opened">
@@ -71,6 +75,20 @@
                   class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
                 </app-movie-search>
               </div>
+                <div *ngIf="!movies$" class="row">
+                  <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let mov of serviceM.movie">
+                    <div class="card">
+                      <img [src]="mov?.poster" class="card-img-top" [alt]="mov?.title">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ mov?.title | uppercase}}</h5>
+                        <p class="card-text"> {{ mov?.title }}</p>
+                        <a routerLink="movie" [queryParams]="{ movieId: mov?.imdbId }" class="btn btn-secondary">
+                          Details </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
             </div>
           </div>
         </div>

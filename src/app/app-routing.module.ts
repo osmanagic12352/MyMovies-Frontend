@@ -7,6 +7,7 @@ import { MovieComponent } from './movie/movie.component';
 import { RegisterComponent } from './register/register.component';
 import { AddUsersListComponent } from './users-lists/add-users-list/add-users-list.component';
 import { UsersListsComponent } from './users-lists/users-lists.component';
+import { UsersMovieComponent } from './users-movie/users-movie.component';
 
 
 
@@ -16,6 +17,7 @@ const routes: Routes = [
     {path: 'movie', component: MovieComponent},
     {path: 'favorite', component: FavoriteListComponent},
     {path: 'register', component: RegisterComponent},
+    {path: 'usersMovie', component: UsersMovieComponent},
     {path: 'usersLists', component: UsersListsComponent, children: [
       {path: 'addList', component: AddUsersListComponent}
     ]}

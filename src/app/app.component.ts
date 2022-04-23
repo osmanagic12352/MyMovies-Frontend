@@ -53,6 +53,7 @@ export class AppComponent {
 
   ngOnInit() {
     this.service.userInfo();
+    this.serviceM.getMovie();
    }
 
   
@@ -72,4 +73,7 @@ export class AppComponent {
     this.movies$ = this.serviceM.searchMovie(this.query);
   }
 
+  refresh(){
+    location.reload();
+  }
 }

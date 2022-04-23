@@ -38,3 +38,11 @@ export interface Rating {
     source: string;
     value: string;
 }
+
+export interface MovieDB {
+  title: string;
+  year: string;
+  imdbId: string;
+  type: string;
+  poster: string;
+}

@@ -12,7 +12,7 @@ export class FavoriteListComponent implements OnInit {
   constructor(public service: MovieService) { }
 
   ngOnInit(): void {
-    this.service.getFavorite();
+    this.service.getFavorite1();
   }
 
 }

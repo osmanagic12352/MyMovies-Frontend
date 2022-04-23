@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpBackend, HttpClient, HttpHeaders } from "@angular/common/http"
 import { map, Observable } from 'rxjs';
-import { Movie, MovieDetail } from './models/movie.model';
+import { Movie, MovieDB, MovieDetail } from './models/movie.model';
 import { UsersList } from './models/usersList.model';
 
 @Injectable({
@@ -17,6 +17,7 @@ export class MovieService {
   }
   favList: Movie[] = [];
   usersList: UsersList[] = [];
+  movie: MovieDB[] = [];
   formData: UsersList = new UsersList();
 
   
@@ -31,28 +32,41 @@ export class MovieService {
     return this.http.post("http://localhost:5002/api/Movies/addMovie", data);
   }
 
+  getMovie(){
+    this.http.get('http://localhost:5002/api/Movies/getAllUsers').subscribe(
+        (res) => {
+          this.movie = res as MovieDB[];
+          console.log(this.movie)
+        },
+        (err) => {
+          console.log;
+        } );
+      }
+
   movieList(): Observable<any> {
     return this.http.get("http://www.omdbapi.com/?i=tt0121765&apikey=a0559ed4")
   }
 
   getMovieDetails(imdbId: string): Observable<MovieDetail | any> {
-    return this.httpClient.get(`https://www.omdbapi.com/?apikey=a0559ed4&i=${imdbId}&plot=full`);
+    return this.httpClient.get(`https://www.omdbapi.com/?apikey=a0559ed4&i=${imdbId}&plot=full`)
   }
 
   addFavorite(imdbId: string): Observable<any>{
     return this.http.post(`http://localhost:5002/api/Favorite/addFavorite?id=${imdbId}`, {});
   }
 
-  getFavorite(){
-    this.http.get('http://localhost:5002/api/Favorite/getUsersFavorite').subscribe(
-        (res) => {
-          this.favList = res as Movie[];
-          console.log(this.favList)
-        },
-        (err) => {
-          console.log;
-        } );
+  getFavorite1(){
+  return this.http.get('http://localhost:5002/api/Favorite/getUsersFavorite').subscribe(
+    (res) => {
+      this.favList = res as Movie[];
+      console.log(this.favList)
+    },
+    (err) => {
+      console.log(err);
+    } );
   }
+
+
 
   addUsersList(): Observable<any>{
     return this.http.post('http://localhost:5002/api/UsersLists/addUsersList', this.formData);
@@ -69,7 +83,7 @@ export class MovieService {
           console.log(this.usersList)
         },
         (err) => {
-          console.log;
+          console.log(err);
         } );
       }
 
@@ -80,7 +94,7 @@ export class MovieService {
           console.log(this.favList)
         },
         (err) => {
-          console.log;
+          console.log(err);
         } );
   }
 

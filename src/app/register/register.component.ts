@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
       res => {
         this.resetForm(form);
         this.toastr.success('Success');
-        this.router.navigate(['/usersLists']);
+        this.router.navigate(['/login']);
       },
       err => {
         console.log(err);

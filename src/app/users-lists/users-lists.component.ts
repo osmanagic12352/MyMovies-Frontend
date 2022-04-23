@@ -25,7 +25,7 @@ export class UsersListsComponent implements OnInit {
           console.log(this.service.favList)
         },
         (err) => {
-          console.log;
+          console.log(err);
         } );
   }
 }

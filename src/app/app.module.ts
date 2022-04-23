@@ -31,6 +31,7 @@ import { FavoriteListComponent } from './favorite-list/favorite-list.component';
 import { UsersListsComponent } from './users-lists/users-lists.component';
 import { MatSelectModule } from '@angular/material/select';
 import { AddUsersListComponent } from './users-lists/add-users-list/add-users-list.component';
+import { UsersMovieComponent } from './users-movie/users-movie.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -45,7 +46,8 @@ export function tokenGetter() {
     MovieSearchComponent,
     FavoriteListComponent,
     UsersListsComponent,
-    AddUsersListComponent
+    AddUsersListComponent,
+    UsersMovieComponent
   ],
   imports: [
     BrowserModule,
