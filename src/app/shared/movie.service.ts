@@ -172,5 +172,11 @@ export class MovieService {
   deleteMovie(imdbId: string) {
     return this.http.delete('http://localhost:5002/api/Movies/deleteMovie_ById/' + imdbId);
   }
+
+  deleteMovieList(id: number) {
+    return this.http.delete('http://localhost:5002/api/UsersLists/deleteUsersList_ById/' + id);
+  }
+
+  
   
 }

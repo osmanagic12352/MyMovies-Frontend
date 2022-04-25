@@ -30,6 +30,20 @@ export class UsersListsComponent implements OnInit {
         } );
   }
 
+  removeMovieList(id: number){
+    this.service.deleteMovieList(id).subscribe(
+      res => {
+        res = id;
+        console.log(id);
+        this.toastr.success('Movie list Removed');
+      },
+      err => {
+        console.log(err);
+        this.toastr.error('Movie list not Removed');
+      }
+    )
+  }
+
   removeMovieFromList(imdbId: any){
     this.service.deleteMovieFromList(imdbId).subscribe(
       res => {

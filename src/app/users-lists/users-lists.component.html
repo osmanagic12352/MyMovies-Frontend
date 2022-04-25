@@ -8,6 +8,7 @@
         <tbody>
             <tr *ngFor="let list of service.usersList">
                 <td (click)="getUsersListMovie(list.id)">{{list.listName}}</td>
+                <td><button Type="button" class="btn btn-danger" (click)="removeMovieList(list.id)">Delete list</button></td>
             </tr>
             <tr>
                 <td routerLink="addList" routerLinkActive="active">+ Add new list</td>
