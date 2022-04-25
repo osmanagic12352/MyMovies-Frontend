@@ -7,10 +7,10 @@
             <h2>{{movie.Title}}</h2>
             <hr>
             <ul class="list-group">
-                <li class="list-group-item"><strong>Genre: </strong>{{movie.Genre}}</li>
-                <li class="list-group-item"><strong>Released: </strong>{{movie.Released}}</li>
-                <li class="list-group-item"><strong>Country: </strong>{{movie.Country}}</li>
                 <li class="list-group-item"><strong>IMDB Rating: </strong>{{movie.imdbRating}}</li>
+                <li class="list-group-item"><strong>Released: </strong>{{movie.Released}}</li>
+                <li class="list-group-item"><strong>Genre: </strong>{{movie.Genre}}</li>
+                <li class="list-group-item"><strong>Country: </strong>{{movie.Country}}</li>
                 <li class="list-group-item"><strong>Director: </strong>{{movie.Director}}</li>
                 <li class="list-group-item"><strong>Actors: </strong>{{movie.Actors}}</li>
                 <br>
@@ -27,22 +27,19 @@
                     favorites</button>
             </div>
         </div>
-        <div class="col-2">
-            <div *ngFor="let list of serviceM.usersList">
-                <button class="btn btn-success" (click)="addToUsersList(list.id, movie.imdbID)">Add to
-                    list</button>
-            </div>
-        </div>
-        <div class="col-2" *ngIf="logedUser">
+        <div class="col-3" *ngIf="logedUser">
             <mat-form-field appearance="fill">
                 <mat-label>Add to other list</mat-label>
                 <mat-select>
-                    <mat-option *ngFor="let list of serviceM.usersList" [value]="list.listName">
+                    <mat-option *ngFor="let list of serviceM.usersList" (value)="list.id">
                         {{list.listName}}
+                        <button class="btn btn-success" (click)="addToUsersList(list.id, movie.imdbID)" style="float: right;">Add to
+                            list</button>
                     </mat-option>
                     <mat-option routerLink="/usersLists">
                         + Add new list
                     </mat-option>
+                    
                 </mat-select>
 
             </mat-form-field>

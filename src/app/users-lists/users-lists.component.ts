@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Movie } from '../shared/models/movie.model';
+import { ToastrService } from 'ngx-toastr';
+import { Movie, MovieDB } from '../shared/models/movie.model';
 import { UsersList } from '../shared/models/usersList.model';
 import { MovieService } from '../shared/movie.service';
 
@@ -12,7 +13,7 @@ import { MovieService } from '../shared/movie.service';
 })
 export class UsersListsComponent implements OnInit {
 
-  constructor(public service: MovieService, private http: HttpClient) { }
+  constructor(public service: MovieService, private http: HttpClient, private toastr:ToastrService) { }
 
   ngOnInit(): void {
     this.service.getUsersList();
@@ -21,11 +22,25 @@ export class UsersListsComponent implements OnInit {
   getUsersListMovie(id: number){
     this.http.get(`http://localhost:5002/api/UsersListsMovies/getMovieFromList?id=${id}`).subscribe(
         (res) => {
-          this.service.favList = res as Movie[];
-          console.log(this.service.favList)
+          this.service.requests = res as MovieDB;
+          console.log(this.service.requests)
         },
         (err) => {
           console.log(err);
         } );
+  }
+
+  removeMovieFromList(imdbId: any){
+    this.service.deleteMovieFromList(imdbId).subscribe(
+      res => {
+        res = imdbId;
+        console.log(imdbId);
+        this.toastr.success('Movie Removed');
+      },
+      err => {
+        console.log(err);
+        this.toastr.error('Movie not Removed');
+      }
+    )
   }
 }

@@ -1,16 +1,10 @@
 <div class="container">
-    <form #form="ngForm" (submit)="onSubmit(form)" (submit)="onSubmit1(form)" novalidate>    
+    <form #form="ngForm" (submit)="updateUserMovie(form)" (submit)="updateMovie(form)" novalidate>    
     <div class="form-group"><br>
         <label style="font-size: medium">Title:</label>
         <input type="text" class="form-control form-control-lg" #title="ngModel" placeholder="Title" name="title" style="font-size: x-larger;" 
                [(ngModel)]="service.uMovie.title" minlength="2" required [class.invalid]="title.invalid && title.touched">
         <span class="help-block" *ngIf="title.invalid && title.touched">*Tipe a movie name!</span>
-    </div><br>
-    <div class="form-group"><br>
-        <label style="font-size: medium">Short title name:</label>
-        <input type="text" class="form-control form-control-lg" #imdbId="ngModel" placeholder="Short movie name" name="imdbId" style="font-size: x-larger;" 
-               [(ngModel)]="service.uMovie.imdbId" minlength="2" required [class.invalid]="imdbId.invalid && imdbId.touched">
-        <span class="help-block" *ngIf="imdbId.invalid && imdbId.touched">*Tipe a short name for your movie!</span>
     </div><br>
     <div class="form-group">
         <label style="font-size: medium">Genre:</label>

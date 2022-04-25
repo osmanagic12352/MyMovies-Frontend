@@ -1,10 +1,16 @@
-<ng-container *ngIf="service.favList.length!=0" >
-    <div *ngFor="let fav of service.favList" class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-        <div class="card">
-            <img src="{{fav.Poster}}" class="card-img-top">
-            <div class="card-body">
-                <p class="card-text"> {{fav.Title}}</p>
-            </div>
+<div class="container">
+  <div class="row">
+    <div *ngFor="let fav of service.requests?.imdbId; index as i" class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+      <div class="card">
+        <img [src]="service.requests.poster[i]" class="card-img-top" />
+        <div class="card-body">
+          <p class="card-text">{{ service.requests.title[i] }}</p>
+          <a routerLink="/movie" [queryParams]="{ movieId: service.requests.imdbId[i] }" class="btn btn-secondary">
+            Details </a>
+          <a (click)="removeFavMovie(service.requests.imdbId[i])" class="btn btn-danger" style="float: right;">
+            Remove favorite </a>
         </div>
+      </div>
     </div>
-</ng-container>
+  </div>
+</div>

@@ -45,4 +45,9 @@ export interface MovieDB {
   imdbId: string;
   type: string;
   poster: string;
+  plot: string;
+  released: string;
+  runtime: string;
+  genre: string;
 }
+

@@ -24,24 +24,39 @@
       <mat-icon mat-list-icon>star</mat-icon>
       <a routerLink="favorite" routerLinkActive="active">Favorites</a><br>
     </mat-list-item>
-    <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent" *ngIf="logedUser" routerLink="usersLists"
-      routerLinkActive="active">
-      <a class="full-width" *ngIf="isExpanded || isShowing">Show More Lists</a>
-      <mat-icon mat-list-icon>bookmarks</mat-icon>
+    <mat-list-item *ngIf="service.userDetails?.admin == 'DA'">
+      <div *ngIf="logedUser">
+        <mat-icon mat-list-icon>account_circle</mat-icon>
+        <a routerLink="edit-user/edit-userform" routerLinkActive="active">User's</a><br>
+      </div>
+    </mat-list-item>
+    <mat-list-item>
+      <div *ngIf="logedUser">
+        <mat-icon mat-list-icon>account_circle</mat-icon>
+        <a routerLink="edit1-user/edit1-userform" routerLinkActive="active">Account</a><br>
+      </div>
+    </mat-list-item>
+    <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent" *ngIf="logedUser">
+      <a class="full-width" *ngIf="isExpanded || isShowing">MyMovie</a>
+      <mat-icon mat-list-icon>movie</mat-icon>
       <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}" *ngIf="isExpanded || isShowing">expand_more
       </mat-icon>
     </mat-list-item><br>
     <div *ngIf="showSubmenu">
       <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
-        <mat-icon mat-list-icon>bookmark</mat-icon>
-        <a mat-list-item href="...">Submenu Item 1</a><br>
-        <mat-icon mat-list-icon>bookmark</mat-icon>
-        <a mat-list-item href="...">Submenu Item 2</a>
+        <mat-icon mat-list-icon>star</mat-icon>
+        <a mat-list-item routerLink="usersMovie" routerLinkActive="aktive">Add a movie</a><br *ngIf="service.userDetails?.admin == 'DA'">
+        <mat-icon mat-list-icon  *ngIf="service.userDetails?.admin == 'DA'">star</mat-icon>
+        <a mat-list-item routerLink="myMoviesAdmin/myMoviesAdminForm" routerLinkActive="aktive"  *ngIf="service.userDetails?.admin == 'DA'">Admin movies</a><br>
+        <mat-icon mat-list-icon>star</mat-icon>
+        <a mat-list-item routerLink="myMovies/myMoviesForm" routerLinkActive="aktive">My movies</a><br>
+        <mat-icon mat-list-icon>star</mat-icon>
+        <a mat-list-item routerLink="allUsersMovies" routerLinkActive="active">All users movies</a>
       </div>
     </div>
     <mat-list-item *ngIf="logedUser">
-      <mat-icon>movie</mat-icon>
-      <a routerLink="usersMovie" routerLinkActive="active">Add a Movie</a>
+      <mat-icon>bookmarks</mat-icon>
+      <a routerLink="usersLists" routerLinkActive="active">Show My Lists</a>
     </mat-list-item><br>
     <mat-list-item *ngIf="logedUser">
       <mat-icon>exit_to_app</mat-icon>
@@ -50,8 +65,8 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar>
-      <span class="logo" routerLink="/" (click)="refresh()">
-      </span>
+      <a class="logo" (click)="refresh()">
+      </a>
       <span class="menu_button">
         <button mat-icon-button (click)="opened=!opened">
           <mat-icon position="end">menu</mat-icon>
@@ -63,32 +78,55 @@
         <div *ngIf="!router.url.includes('usersLists')" class="container">
           <div *ngIf="!router.url.includes('register')" class="container">
             <div *ngIf="!router.url.includes('login')" class="container">
-              <div class="form-group">
-                <label for="query">Search for a Movie</label>
-                <input id="query" type="text" class="form-control" [(ngModel)]="query"
-                  (keyup.enter)="getSearchResults()">
-              </div> <br>
-              <button type="button" (click)="getSearchResults()" class="form-control btn btn-primary">Search</button>
-              <hr>
-              <div class="row">
-                <app-movie-search *ngFor="let movie of movies$ | async" [movie]="movie"
-                  class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                </app-movie-search>
-              </div>
-                <div *ngIf="!movies$" class="row">
-                  <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let mov of serviceM.movie">
-                    <div class="card">
-                      <img [src]="mov?.poster" class="card-img-top" [alt]="mov?.title">
-                      <div class="card-body">
-                        <h5 class="card-title">{{ mov?.title | uppercase}}</h5>
-                        <p class="card-text"> {{ mov?.title }}</p>
-                        <a routerLink="movie" [queryParams]="{ movieId: mov?.imdbId }" class="btn btn-secondary">
-                          Details </a>
+              <div *ngIf="!router.url.includes('usersMovie')" class="container">
+                <div *ngIf="!router.url.includes('allUsersMovies')" class="container">
+                  <div *ngIf="!router.url.includes('edit-user')" class="container">
+                    <div *ngIf="!router.url.includes('edit1-user')" class="container">
+                      <div *ngIf="!router.url.includes('myMoviesForm')" class="container">
+                        <div *ngIf="!router.url.includes('myMoviesAdminForm')" class="container">
+                          <div class="form-group">
+                            <label for="query">Search for a Movie</label>
+                            <input id="query" type="text" class="form-control" [(ngModel)]="query"
+                              (keyup.enter)="getSearchResults()">
+                          </div> <br>
+                          <button type="button" (click)="getSearchResults()"
+                            class="form-control btn btn-primary">Search</button>
+                          <hr>
+                          <div class="row">
+                            <app-movie-search *ngFor="let movie of movies$ | async" [movie]="movie"
+                              class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                            </app-movie-search>
+                          </div>
+                          <div class="row container">
+                            <h1>Viewed movies:</h1>
+                            <p>(If you can't see details of a specific movie, it's because movie is from a user. Then
+                              please
+                              go
+                              <a routerLink="allUsersMovies" routerLinkActive="active">here</a> to see a list of user's
+                              movie's.)
+                            </p>
+                          </div>
+                          <div class="row" *ngIf="!movies$">
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12"
+                              *ngFor="let mov of serviceM.movie">
+                              <div class="card" routerLink="movie" [queryParams]="{ movieId: mov?.imdbId }">
+                                <img [src]="mov?.poster" class="card-img-top" [alt]="mov?.title">
+                                <div class="card-body">
+                                  <h5 class="card-title">{{ mov?.title | uppercase}}</h5>
+                                  <p class="card-text"> {{ mov?.title }} is a {{mov?.genre}}, released in
+                                    {{mov?.released}}
+                                    <br><b>CLICK FOR MORE DETAILS!</b>
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              
+              </div>
             </div>
           </div>
         </div>

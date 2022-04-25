@@ -58,7 +58,11 @@ export class AppComponent {
 
   
   onLogout() {
-    localStorage.removeItem('token');
+    localStorage.removeItem('token')
+    this.router.navigate(['/'])
+    .then(() => {
+      window.location.reload();
+    });
   }
 
   get logedUser() {
@@ -74,6 +78,12 @@ export class AppComponent {
   }
 
   refresh(){
-    location.reload();
+    this.router.navigate(['/'])
+    .then(() => {
+      window.location.reload();
+    });
   }
+
+  
+  
 }

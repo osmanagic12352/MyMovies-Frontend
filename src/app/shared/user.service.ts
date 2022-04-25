@@ -38,21 +38,18 @@ export class UserService {
   }
 
   put1User(){
-    return this.http.put(`${'http://localhost:5001/api/ApplicationUser/UpdateUser?password='}${this.formData.password}`, this.formData);
+    return this.http.put(`${'http://localhost:5002/api/User/UpdateUser?password='}${this.formData.password}`, this.formData);
   }
 
   userInfo(){
     return this.http.get('http://localhost:5002/api/User/getLogedUser').subscribe(
       (res) => {
         this.userDetails = res;
+        console.log(res)
       },
       (err) =>{
         console.log(err);
       }
     );
-  }
-
-  delete1User(id:string){
-    return this.http.delete('http://localhost:5001/api/ApplicationUser/DeleteUser');
   }
 }

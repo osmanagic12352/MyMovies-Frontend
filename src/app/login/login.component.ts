@@ -25,12 +25,15 @@ export class LoginComponent implements OnInit {
     this.service.postLogin().subscribe(
       (res:any) => {
         localStorage.setItem('token',res.token);
-        this.toastr.success('Logiranje','Uspješno')
-        this.router.navigate(['/']);
+        this.toastr.success('Login success')
+        this.router.navigate(['/'])
+        .then(() => {
+          window.location.reload();
+        });
       },
       err => {
         console.log(err);
-        this.toastr.error('Neispravan unos Emaila ili Passworda!','Greška');
+        this.toastr.error('Wrong username, or password!');
       }
     );
   }

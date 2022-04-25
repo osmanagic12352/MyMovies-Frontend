@@ -40,9 +40,10 @@ mat-toolbar {
     padding-bottom: 0.7%;
     justify-content: space-between;
     position: fixed;
+    z-index: 1;
 }
 
-span.logo {
+a.logo {
   height: 90%;
   min-width: 250px;
   background: url(./assets/Images/logoFull.png);
@@ -55,11 +56,23 @@ span.menu_button {
     position: end;
 }
 
+
+.poster{
+  max-width: 350px;
+  max-height: 300px;
+}
+
 .card {
     margin-bottom: 15px;
     min-height: 425px;
     max-height: 450px;
+    min-height: 450px;
+    border-color: black;
   }
+
+.card:hover {
+  transform: translate3d(0, 10px, 0);
+}
   
 .card-img-top {
     height: 300px;

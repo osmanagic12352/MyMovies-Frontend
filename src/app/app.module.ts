@@ -32,6 +32,15 @@ import { UsersListsComponent } from './users-lists/users-lists.component';
 import { MatSelectModule } from '@angular/material/select';
 import { AddUsersListComponent } from './users-lists/add-users-list/add-users-list.component';
 import { UsersMovieComponent } from './users-movie/users-movie.component';
+import { AllUsersMoviesComponent } from './all-users-movies/all-users-movies.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
+import { EditUserFormComponent } from './edit-user/edit-user-form/edit-user-form.component';
+import { Edit1UserComponent } from './edit1-user/edit1-user.component';
+import { Edit1UserFormComponent } from './edit1-user/edit1-user-form/edit1-user-form.component';
+import { MyMoviesComponent } from './my-movies/my-movies.component';
+import { MyMoviesFormComponent } from './my-movies/my-movies-form/my-movies-form.component';
+import { MyMoviesAdminComponent } from './my-movies-admin/my-movies-admin.component';
+import { MyMoviesAdminFormComponent } from './my-movies-admin/my-movies-admin-form/my-movies-admin-form.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -47,7 +56,16 @@ export function tokenGetter() {
     FavoriteListComponent,
     UsersListsComponent,
     AddUsersListComponent,
-    UsersMovieComponent
+    UsersMovieComponent,
+    AllUsersMoviesComponent,
+    EditUserComponent,
+    EditUserFormComponent,
+    Edit1UserComponent,
+    Edit1UserFormComponent,
+    MyMoviesComponent,
+    MyMoviesFormComponent,
+    MyMoviesAdminComponent,
+    MyMoviesAdminFormComponent
   ],
   imports: [
     BrowserModule,

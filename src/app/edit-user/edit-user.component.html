@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <h2 routerLink="uredi-korisnika" routerLinkActive='active'>Edit User</h2>
+            <router-outlet></router-outlet>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-6">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th>id</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Full Name</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let pd of service.list">
+                        <td (click)="populateForm(pd)">{{pd.id}}</td>
+                        <td (click)="populateForm(pd)">{{pd.userName}}</td>
+                        <td (click)="populateForm(pd)">{{pd.email}}</td>
+                        <td (click)="populateForm(pd)">{{pd.fullName}}</td>
+                        <td>
+                            <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.id)">Delete</i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
