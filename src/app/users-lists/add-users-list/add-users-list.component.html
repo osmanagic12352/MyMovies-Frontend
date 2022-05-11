@@ -1,7 +1,7 @@
-<div class="container">
+
     <hr>
-    <form #form="ngForm" (submit)="onSubmit(form)">
-        <div class="form-group"><br>
+    <form #form="ngForm" (submit)="onSubmit(form)" style="margin-left: 2%; margin-right: 2%;">
+        <div class="form-group">
             <label style="font-size: medium">List name</label>
             <input type="text" class="form-control form-control-lg" #listName="ngModel" name="listName"
                 style="font-size: x-larger;" [(ngModel)]="service.formData.listName">
@@ -10,10 +10,7 @@
             <div>
                 <button type="submit" class="btn btn-secondary btn-lg btn-block position-center"
                     style="font-size: x-large">ADD</button>
-            </div><br>
+            </div>
         </div>
-        <router-outlet></router-outlet>
     </form>
     <hr>
-</div>    
-

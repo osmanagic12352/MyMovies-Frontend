@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { MatMenuModule } from '@angular/material/menu';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -26,7 +26,6 @@ import { LoginService } from './shared/login.service';
 import { UserService } from './shared/user.service';
 import { MovieComponent } from './movie/movie.component';
 import { RouterLinkDelayModule } from '@bcodes/ngx-routerlink-delay';
-import { MovieSearchComponent } from './movie-search/movie-search.component';
 import { FavoriteListComponent } from './favorite-list/favorite-list.component';
 import { UsersListsComponent } from './users-lists/users-lists.component';
 import { MatSelectModule } from '@angular/material/select';
@@ -41,6 +40,8 @@ import { MyMoviesComponent } from './my-movies/my-movies.component';
 import { MyMoviesFormComponent } from './my-movies/my-movies-form/my-movies-form.component';
 import { MyMoviesAdminComponent } from './my-movies-admin/my-movies-admin.component';
 import { MyMoviesAdminFormComponent } from './my-movies-admin/my-movies-admin-form/my-movies-admin-form.component';
+import { HomeComponent } from './home/home.component';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -52,7 +53,6 @@ export function tokenGetter() {
     LoginComponent,
     RegisterComponent,
     MovieComponent,
-    MovieSearchComponent,
     FavoriteListComponent,
     UsersListsComponent,
     AddUsersListComponent,
@@ -65,7 +65,9 @@ export function tokenGetter() {
     MyMoviesComponent,
     MyMoviesFormComponent,
     MyMoviesAdminComponent,
-    MyMoviesAdminFormComponent
+    MyMoviesAdminFormComponent,
+    HomeComponent,
+    WelcomePageComponent
   ],
   imports: [
     BrowserModule,
@@ -73,6 +75,7 @@ export function tokenGetter() {
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     ToastrModule.forRoot(),
     MatToolbarModule,
     MatIconModule,

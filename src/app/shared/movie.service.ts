@@ -36,19 +36,34 @@ export class MovieService {
   }
 
   postMovie(data: any[]): Observable<any> {
-    return this.http.post("http://localhost:5002/api/Movies/addMovie", data);
+    return this.http.post("http://localhost:5002/api/movies/addMovie", data);
+  }
+
+  postViewedMovie(data: any[]): Observable<any> {
+    return this.http.post("http://localhost:5002/api/viewedMovies/addViewedMovie", data);
   }
 
   postMovie1() {
-    return this.http.post("http://localhost:5002/api/Movies/addMovie", this.uMovie);
+    return this.http.post("http://localhost:5002/api/movies/addMovie", this.uMovie);
   }
 
   postUsersMovie() {
-    return this.http.post("http://localhost:5002/api/UsersMovies/addUsersMovie", this.uMovie);
+    return this.http.post("http://localhost:5002/api/usersMovies/addUsersMovie", this.uMovie);
   }
 
   getMovie() {
-    this.http.get('http://localhost:5002/api/Movies/getAllMovies').subscribe(
+    this.http.get('http://localhost:5002/api/movies/getAllMovies').subscribe(
+      (res) => {
+        this.movie = res as MovieDB[];
+        console.log(this.movie)
+      },
+      (err) => {
+        console.log;
+      });
+  }
+
+  getViewedMovie() {
+    this.http.get('http://localhost:5002/api/viewedMovies/getAllViewedMovies').subscribe(
       (res) => {
         this.movie = res as MovieDB[];
         console.log(this.movie)
@@ -59,7 +74,7 @@ export class MovieService {
   }
 
   getAllUsersMovies() {
-    this.http.get('http://localhost:5002/api/UsersMovies/getAllUsersMovies').subscribe(
+    this.http.get('http://localhost:5002/api/usersMovies/getAllUsersMovies').subscribe(
       (res) => {
         this.movies = res as MovieDB[];
         console.log(this.movies)
@@ -70,7 +85,7 @@ export class MovieService {
   }
 
   getUsersMoviesDB() {
-    this.http.get('http://localhost:5002/api/UsersMovies/getUsersMovies_User').subscribe(
+    this.http.get('http://localhost:5002/api/usersMovies/getUsersMoviesUser').subscribe(
       (res) => {
         this.uMovies = res as UserMovie[];
         console.log(this.uMovies)
@@ -81,7 +96,7 @@ export class MovieService {
   }
 
   getAllUsersMoviesDB() {
-    this.http.get('http://localhost:5002/api/UsersMovies/getAllUsersMovies').subscribe(
+    this.http.get('http://localhost:5002/api/usersMovies/getAllUsersMovies').subscribe(
       (res) => {
         this.uMovies = res as UserMovie[];
         console.log(this.uMovies)
@@ -92,11 +107,11 @@ export class MovieService {
   }
 
   putUserMovieDB(){
-    return this.http.put(`${'http://localhost:5002/api/UsersMovies/editUsersMovie_ById'}/${this.uMovie.id}`, this.uMovie);
+    return this.http.put(`${'http://localhost:5002/api/usersMovies/editUsersMovieById'}/${this.uMovie.id}`, this.uMovie);
   }
 
   putMovie(){
-    return this.http.put(`${'http://localhost:5002/api/Movies/editMovie_ById'}/${this.uMovie.imdbId}`, this.uMovie);
+    return this.http.put(`${'http://localhost:5002/api/movies/editMovieById'}/${this.uMovie.imdbId}`, this.uMovie);
   }
   
 
@@ -109,11 +124,11 @@ export class MovieService {
   }
 
   addFavorite(imdbId: string): Observable<any> {
-    return this.http.post(`http://localhost:5002/api/Favorite/addFavorite?id=${imdbId}`, {});
+    return this.http.post(`http://localhost:5002/api/favorite/addFavorite?id=${imdbId}`, {});
   }
 
   getFavorite1() {
-    return this.http.get('http://localhost:5002/api/Favorite/getUsersFavorite').subscribe(
+    return this.http.get('http://localhost:5002/api/favorite/getUsersFavorite').subscribe(
       (res) => {
         this.requests = res as MovieDB;
         console.log(this.requests)
@@ -126,15 +141,15 @@ export class MovieService {
 
 
   addUsersList(): Observable<any> {
-    return this.http.post('http://localhost:5002/api/UsersLists/addUsersList', this.formData);
+    return this.http.post('http://localhost:5002/api/usersLists/addUsersList', this.formData);
   }
 
   addUsersListMovie(id: any, imdbId: string): Observable<any> {
-    return this.http.post(`http://localhost:5002/api/UsersListsMovies/addMovieInList?id=${id}&imdbId=${imdbId}`, {});
+    return this.http.post(`http://localhost:5002/api/usersListsMovies/addMovieInList?id=${id}&imdbId=${imdbId}`, {});
   }
 
   getUsersList() {
-    this.http.get('http://localhost:5002/api/UsersLists/getUsersLists_User').subscribe(
+    this.http.get('http://localhost:5002/api/usersLists/getUsersListsUser').subscribe(
       (res) => {
         this.usersList = res as UsersList[];
         console.log(this.usersList)
@@ -145,7 +160,7 @@ export class MovieService {
   }
 
   getUsersListMovie(id: any) {
-    this.http.get(`http://localhost:5002/api/UsersListsMovies/getMovieFromList?id=${id}`).subscribe(
+    this.http.get(`http://localhost:5002/api/usersListsMovies/getMovieFromList?id=${id}`).subscribe(
       (res) => {
         this.favList = res as Movie[];
         console.log(this.favList)
@@ -156,25 +171,25 @@ export class MovieService {
   }
 
   deleteFavMovie(id: string) {
-    return this.http.delete('http://localhost:5002/api/Favorite/deleteFavorite/' + id);
+    return this.http.delete('http://localhost:5002/api/favorite/deleteFavorite/' + id);
   }
 
   deleteMovieFromList(id: string) {
-    return this.http.delete('http://localhost:5002/api/UsersListsMovies/deleteMovieFromList/' + id);
+    return this.http.delete('http://localhost:5002/api/usersListsMovies/deleteMovieFromList/' + id);
   }
 
   
 
-  deleteUsersMovie(imdbId: string) {
-    return this.http.delete('http://localhost:5002/api/UsersMovies/deleteUsersMovie_ById/' + imdbId);
+  deleteUsersMovie(id: number) {
+    return this.http.delete('http://localhost:5002/api/usersMovies/deleteUsersMovieById/' + id);
   }
 
   deleteMovie(imdbId: string) {
-    return this.http.delete('http://localhost:5002/api/Movies/deleteMovie_ById/' + imdbId);
+    return this.http.delete('http://localhost:5002/api/movies/deleteMovieById/' + imdbId);
   }
 
   deleteMovieList(id: number) {
-    return this.http.delete('http://localhost:5002/api/UsersLists/deleteUsersList_ById/' + id);
+    return this.http.delete('http://localhost:5002/api/usersLists/deleteUsersListById/' + id);
   }
 
   

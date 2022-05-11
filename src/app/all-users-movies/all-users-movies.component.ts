@@ -26,7 +26,7 @@ export class AllUsersMoviesComponent implements OnInit {
   }
 
   getUsersMovies(id: any) {
-    this.http.get('http://localhost:5002/api/Movies/getMovie_ById/'+ id).subscribe(
+    this.http.get('http://localhost:5002/api/movies/getMovieById/'+ id).subscribe(
       (res) => {
         this.service.requests = res as MovieDB;
         console.log(this.service.movie)

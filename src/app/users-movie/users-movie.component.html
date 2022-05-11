@@ -1,51 +1,75 @@
-<div class="container">
-    <form #form="ngForm" (submit)="onSubmit(form)" (submit)="onSubmit1(form)" novalidate>    
-    <div class="form-group"><br>
-        <label style="font-size: medium">Title:</label>
-        <input type="text" class="form-control form-control-lg" #title="ngModel" placeholder="Title" name="title" style="font-size: x-larger;" 
-               [(ngModel)]="service.uMovie.title" minlength="2" required [class.invalid]="title.invalid && title.touched">
-        <span class="help-block" *ngIf="title.invalid && title.touched">*Tipe a movie name!</span>
-    </div><br>
-    <div class="form-group"><br>
-        <label style="font-size: medium">Short title name:</label>
-        <input type="text" class="form-control form-control-lg" #imdbId="ngModel" placeholder="Short movie name" name="imdbId" style="font-size: x-larger;" 
-               [(ngModel)]="service.uMovie.imdbId" minlength="2" required [class.invalid]="imdbId.invalid && imdbId.touched">
-        <span class="help-block" *ngIf="imdbId.invalid && imdbId.touched">*Tipe a short name for your movie!</span>
-    </div><br>
-    <div class="form-group">
-        <label style="font-size: medium">Genre:</label>
-        <input type="text" class="form-control form-control-lg" #genre="ngModel" placeholder="Genre" name="genre" style="font-size: x-larger;" 
-               [(ngModel)]="service.uMovie.genre" minlength="4" required [class.invalid]="genre.invalid && genre.touched">
-               <span class="help-block" *ngIf="genre.invalid && genre.touched">*Tipe a genre!</span>
-    </div><br>
-    <div class="form-group">
-        <label style="font-size: medium">Poster:</label>
-        <input type="text" class="form-control form-control-lg" #poster="ngModel" placeholder="Poster" name="poster" style="font-size: x-larger;"
-                 minlength="3" [(ngModel)]="service.uMovie.poster" required [class.invalid]="poster.invalid && poster.touched">
-               <span class="help-block" *ngIf="poster.invalid && poster.touched">*Put a poster link (img src)!</span>
-    </div><br>
-    <div class="form-group">
-        <label style="font-size: medium">Released</label>
-        <input type="text" class="form-control form-control-lg" placeholder="Released" #released="ngModel" name="released" style="font-size: x-larger;" 
-               [(ngModel)]="service.uMovie.released" required [class.invalid]="released.invalid && released.touched">
-               <span class="help-block" *ngIf="released.invalid && released.touched">*Tipe released data!</span>
-    </div><br>
-    <div class="form-group">
-        <label style="font-size: medium">Runtime</label>
-        <input type="text" class="form-control form-control-lg" placeholder="Runtime" #runtime="ngModel" name="runtime" style="font-size: x-larger;" 
-               [(ngModel)]="service.uMovie.runtime" required [class.invalid]="runtime.invalid && runtime.touched">
-               <span class="help-block" *ngIf="runtime.invalid && runtime.touched">*Tipe runtime!</span>
-    </div><br>
-    <div class="form-group">
-        <label style="font-size: medium">Plot</label>
-        <input type="text" class="form-control form-control-lg" placeholder="Plot" #plot="ngModel" name="plot" style="font-size: x-larger;" 
-               [(ngModel)]="service.uMovie.plot" required [class.invalid]="plot.invalid && plot.touched">
-               <span class="help-block" *ngIf="plot.invalid && plot.touched">*Tipe released data!</span>
-    </div><br>
-    <div class="form-row text-center">
-        <div>
-            <button type="submit" class="btn btn-secondary position-center" style="font-size: x-large" [disabled]="form.invalid">ADD MOVIE</button> 
-        </div><br>
-    </div> 
-</form> 
-</div>       
+<div class="container1">
+    <div class="box-divMC">
+        <form #form="ngForm" (submit)="onSubmit(form)" (submit)="onSubmit1(form)" novalidate>
+            <div class="row">
+                <div class="form-group col-md-5" style="margin-left: 7%;"><br>
+                    <label style="font-size: x-large">Title:</label>
+                    <input type="text" class="form-control form-control-lg" #title="ngModel" placeholder="Title"
+                        name="title" style="font-size: x-larger;" [(ngModel)]="service.uMovie.title" minlength="2"
+                        required [class.invalid]="title.invalid && title.touched">
+                    <span class="help-block" *ngIf="title.invalid && title.touched">*Tipe a movie name!</span>
+                </div><br>
+                <div class="form-group col-md-5" ><br>
+                    <label style="font-size: x-large">Short title name:</label>
+                    <input type="text" class="form-control form-control-lg" #imdbId="ngModel"
+                        placeholder="Short movie name" name="imdbId" style="font-size: x-larger;"
+                        [(ngModel)]="service.uMovie.imdbId" minlength="2" required
+                        [class.invalid]="imdbId.invalid && imdbId.touched">
+                    <span class="help-block" *ngIf="imdbId.invalid && imdbId.touched">*Tipe a short name for your
+                        movie!</span>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="form-group col-md-5" style="margin-left: 7%;">
+                    <label style="font-size: x-large">Genre:</label>
+                    <input type="text" class="form-control form-control-lg" #genre="ngModel" placeholder="Genre"
+                        name="genre" style="font-size: x-larger;" [(ngModel)]="service.uMovie.genre" minlength="4"
+                        required [class.invalid]="genre.invalid && genre.touched">
+                    <span class="help-block" *ngIf="genre.invalid && genre.touched">*Tipe a genre!</span>
+                </div><br>
+
+                <div class="form-group col-md-5" >
+                    <label style="font-size: x-large">Poster:</label>
+                    <input type="text" class="form-control form-control-lg" #poster="ngModel" placeholder="Poster"
+                        name="poster" style="font-size: x-larger;" minlength="3" [(ngModel)]="service.uMovie.poster"
+                        required [class.invalid]="poster.invalid && poster.touched">
+                    <span class="help-block" *ngIf="poster.invalid && poster.touched">*Put a poster link (img
+                        src)!</span>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="form-group col-md-5" style="margin-left: 7%;">
+                    <label style="font-size: x-large">Released></label>
+                    <input type="date" class="form-control form-control-lg" placeholder="Released" #released="ngModel"
+                        name="released" style="font-size: x-larger;" [(ngModel)]="service.uMovie.released" required
+                        [class.invalid]="released.invalid && released.touched">
+                    <span class="help-block" *ngIf="released.invalid && released.touched">*Tipe released data!</span>
+                </div><br>
+                <div class="form-group col-md-5" >
+                    <label style="font-size: x-large">Runtime</label>
+                    <input type="text" class="form-control form-control-lg" placeholder="Runtime" #runtime="ngModel"
+                        name="runtime" style="font-size: x-larger;" [(ngModel)]="service.uMovie.runtime" required
+                        [class.invalid]="runtime.invalid && runtime.touched">
+                    <span class="help-block" *ngIf="runtime.invalid && runtime.touched">*Tipe runtime!</span>
+                </div>
+            </div><br>
+
+            <div class="row">
+                <div class="form-group col-md-5" style="margin-left: 7%;">
+                    <label style="font-size: x-large">Plot</label>
+                    <textarea type="text" class="form-control form-control-lg" placeholder="Plot" #plot="ngModel"
+                        name="plot" style="font-size: x-larger;" [(ngModel)]="service.uMovie.plot" required
+                        [class.invalid]="plot.invalid && plot.touched"></textarea>
+                    <span class="help-block" *ngIf="plot.invalid && plot.touched">*Tipe released data!</span>
+                </div>
+                <div class="col-md-5">
+                    <div><br>
+                        <button type="submit" class="btn btn-secondary position-center" style="font-size: x-large; margin-left: 20%; height: 60px; width: 300px;"
+                            [disabled]="form.invalid">ADD MOVIE</button>
+                    </div><br>
+                </div>
+            </div>
+            <br><br>
+        </form>
+    </div>
+</div>

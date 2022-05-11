@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
       (res:any) => {
         localStorage.setItem('token',res.token);
         this.toastr.success('Login success')
-        this.router.navigate(['/'])
+        this.router.navigate(['home'])
         .then(() => {
           window.location.reload();
         });

@@ -1,23 +1,20 @@
-<div class="container">
-        <hr>
-        <form #form="ngForm" (submit)="onSubmit(form)">
-            <div class="form-group"><br>
-                <label style="font-size: medium">Username</label>
-                <input type="text" class="form-control form-control-lg" #username="ngModel" name="username"
-                    style="font-size: x-larger;" [(ngModel)]="service.formData.username">
-            </div><br>
-            <div class="form-group">
-                <label style="font-size: medium">Password</label>
-                <input type="password" class="form-control form-control-lg" #Password="ngModel" name="password"
-                    style="font-size: x-larger;" [(ngModel)]="service.formData.password">
-            </div><br>
-            <div class="form-row text-center">
-                <div>
-                    <button type="submit" class="btn btn-secondary btn-lg btn-block position-center"
-                        style="font-size: x-large">LOGIN</button>
-                </div><br>
-            </div>
-            <router-outlet></router-outlet>
-        </form>
-        <hr>
-</div>
+<form #form="ngForm" (submit)="onSubmit(form)" novalidate>
+    <div class="row">
+        <div class="form-group col-md-6" style="margin-left: 5%;"><br>
+            <label style="font-size: x-large">Username</label>
+            <input type="text" class="form-control form-control-lg" #username="ngModel" name="username"
+                style="font-size: x-larger;" [(ngModel)]="service.formData.username" required>
+        </div>
+    </div><br>
+    <div class="row">
+        <div class="form-group col-md-6" style="margin-left: 5%;">
+            <label style="font-size: x-large">Password</label>
+            <input type="password" class="form-control form-control-lg" #Password="ngModel" name="password"
+                style="font-size: x-larger;" [(ngModel)]="service.formData.password" required>
+        </div>
+        <div class="col-md-3">
+            <button type="submit" class="popcorn" [disabled]="form.invalid"></button>
+        </div><br>
+    </div>
+    <router-outlet></router-outlet>
+</form>

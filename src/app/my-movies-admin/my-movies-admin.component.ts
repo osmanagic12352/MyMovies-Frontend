@@ -21,9 +21,9 @@ export class MyMoviesAdminComponent implements OnInit {
     this.service.uMovie = Object.assign({},selectedRecord);
 }
 
-  onDeleteMovie(imdbId:string){
+  onDeleteMovie(id: number){
     if(confirm('Are you sure, that you want to delete your movie?')){
-        this.service.deleteUsersMovie(imdbId)
+        this.service.deleteUsersMovie(id)
             .subscribe(
                res =>{
                     this.toastr.success('Movie deleted!')
@@ -34,15 +34,4 @@ export class MyMoviesAdminComponent implements OnInit {
   
 }
 
-deleteMovies(imdbId:string){
-  if(confirm('Are you sure, that you want to delete your movie?')){
-      this.service.deleteMovie(imdbId)
-          .subscribe(
-             res =>{
-                  this.toastr.success('Movie deleted!')
-      },
-      err => {console.log(err)}
-  )
-    }
-  }
 }

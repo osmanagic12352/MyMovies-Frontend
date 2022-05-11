@@ -1,26 +1,26 @@
 <div class="wrapper">
     <form #form="ngForm" (submit)="update1User(form)" novalidate>    
-        <div class="form-group"><br>
-            <label style="font-size: medium">Username</label>
+        <div class="form-group">
+            <label style="font-size: x-large">Username</label>
             <input type="text" class="form-control form-control-lg" #userName="ngModel" name="userName" style="font-size: x-larger;" 
                    [(ngModel)]="service.formData.userName" minlength="3" required [class.invalid]="userName.invalid && userName.touched">
             <span class="help-block" *ngIf="userName.invalid && userName.touched">*Type your username!</span>
         </div><br>
         <div class="form-group">
-            <label style="font-size: medium">Email</label>
+            <label style="font-size: x-large">Email</label>
             <input type="text" class="form-control form-control-lg" #email="ngModel" name="email" style="font-size: x-larger;" 
                    [(ngModel)]="service.formData.email" pattern="^[a-z0-9.]+@[a-z0-9.]+\.[a-z]{2,3}$" required [class.invalid]="email.invalid && email.touched">
                    <span class="help-block" *ngIf="email.invalid && email.touched">*Incorect email!</span>
         </div><br>
         <div class="form-group">
-            <label style="font-size: medium">fullName</label>
+            <label style="font-size: x-large">Fullname</label>
             <input type="text" class="form-control form-control-lg" #fullName="ngModel" name="fullName" style="font-size: x-larger;"
                    pattern="^[a-zA-Z čćžđšČĆŽĐŠ]+\s[a-zA-Z čćžđšČĆŽĐŠ]{1,}$" minlength="3" [(ngModel)]="service.formData.fullName" required [class.invalid]="fullName.invalid && fullName.touched">
                    <span class="help-block" *ngIf="fullName.errors?.['pattern']">*FullName must have name and surname!<br></span>
                    <span class="help-block" *ngIf="fullName.invalid && fullName.touched">*Type FullName!</span>
         </div><br>
         <div class="form-group">
-            <label style="font-size: medium">Password</label>
+            <label style="font-size: x-large">Password</label>
             <input type="password" class="form-control form-control-lg" pattern="(?=.*\d)(?=.*[a-z]).{6,}" #password="ngModel" name="password" style="font-size: x-larger;" 
                    [(ngModel)]="service.formData.password" required [class.invalid]="password.invalid && password.touched">
                    <span class="help-block" *ngIf="password.errors?.['pattern']">*Password must have 6 characters, from them min. 1 nummber!<br></span>

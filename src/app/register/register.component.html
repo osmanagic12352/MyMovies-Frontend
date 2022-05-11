@@ -1,44 +1,45 @@
-<div class="container">
-    <hr>
-    <form #form="ngForm" (submit)="onSubmit(form)" novalidate>
-        <div class="form-group"><br>
-            <label style="font-size: medium">Username</label>
+<form #form="ngForm" (submit)="onSubmit(form)" novalidate>
+    <div class="row">
+        <div class="form-group col-md-5" style="margin-left: 5%;">
+            <label style="font-size: x-large">Username</label>
             <input type="text" class="form-control form-control-lg" #userName="ngModel" placeholder="Username"
                 name="userName" style="font-size: x-larger;" [(ngModel)]="service.formData.userName" minlength="3"
                 required [class.invalid]="userName.invalid && userName.touched">
             <span class="help-block" *ngIf="userName.invalid && userName.touched">*Type your Username!</span>
         </div><br>
-        <div class="form-group">
-            <label style="font-size: medium">Email</label>
+        <div class="form-group col-md-5" style="margin-left: 5%;">
+            <label style="font-size: x-large">Email</label>
             <input type="text" class="form-control form-control-lg" #email="ngModel" placeholder="e-mail adress"
                 name="email" style="font-size: x-larger;" [(ngModel)]="service.formData.email"
                 pattern="^[a-z0-9.]+@[a-z0-9.]+\.[a-z]{2,3}$" required [class.invalid]="email.invalid && email.touched">
             <span class="help-block" *ngIf="email.invalid && email.touched">*Incorect Email!</span>
-        </div><br>
-        <div class="form-group">
-            <label style="font-size: medium">Full Name</label>
+        </div>
+    </div><br>
+    <div class="row">
+        <div class="form-group col-md-5" style="margin-left: 5%;">
+            <label style="font-size: x-large">Full Name</label>
             <input type="text" class="form-control form-control-lg" #fullName="ngModel" placeholder="Full Name"
                 name="fullName" style="font-size: x-larger;" pattern="^[a-zA-Z čćžđšČĆŽĐŠ]+\s[a-zA-Z čćžđšČĆŽĐŠ]{1,}$"
                 minlength="3" [(ngModel)]="service.formData.fullName" required
                 [class.invalid]="fullName.invalid && fullName.touched">
-            <span class="help-block" *ngIf="fullName.errors?.['pattern']">*You must input your full name and surname<br></span>
+            <span class="help-block" *ngIf="fullName.errors?.['pattern']">*You must input your full name and
+                surname<br></span>
             <span class="help-block" *ngIf="fullName.invalid && fullName.touched">*Type your full name!</span>
         </div><br>
-        <div class="form-group">
-            <label style="font-size: medium">Password</label>
+        <div class="form-group col-md-5" style="margin-left: 5%;">
+            <label style="font-size: x-large">Password</label>
             <input type="password" class="form-control form-control-lg" pattern="(?=.*\d)(?=.*[a-z]).{6,}"
                 placeholder="password" #password="ngModel" name="password" style="font-size: x-larger;"
                 [(ngModel)]="service.formData.password" required [class.invalid]="password.invalid && password.touched">
             <span class="help-block" *ngIf="password.errors?.['pattern']">*Password must have 6 caracters, min. 1
-                nummber!<br></span>
+                nummber!</span>
             <span class="help-block" *ngIf="password.invalid && password.touched">*Password required!</span>
-        </div><br>
-        <div class="form-row text-center">
-            <div>
-                <button type="submit" class="btn btn-secondary position-center" style="font-size: x-large"
-                    [disabled]="form.invalid">REGISTER</button>
-            </div><br>
         </div>
-    </form>
-    <hr>
-</div>
+    </div>
+    <div class="form-row">
+        <div> <br>
+            <button type="submit" class="btn btn-secondary position-center" style="font-size: x-large; margin-left: 5%;"
+                [disabled]="form.invalid">REGISTER</button>
+        </div>
+    </div>
+</form>

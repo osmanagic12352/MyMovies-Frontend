@@ -9,7 +9,7 @@ export class LoginService {
 
   constructor(private http:HttpClient) { }
   formData: Login = new Login();
-  readonly BaseURL = "http://localhost:5002/api/Login/login"
+  readonly BaseURL = "http://localhost:5002/api/login/login"
   
   postLogin(){
     return this.http.post(this.BaseURL, this.formData);

@@ -1,49 +1,49 @@
 <div class="container" *ngIf="movieDetils$ | async as movie">
     <div class="row">
-        <div class="col-4">
+        <div class="col-md-4">
             <img id="img1" src="{{movie.Poster}}">
         </div>
-        <div class="col-8">
-            <h2>{{movie.Title}}</h2>
-            <hr>
-            <ul class="list-group">
-                <li class="list-group-item"><strong>IMDB Rating: </strong>{{movie.imdbRating}}</li>
-                <li class="list-group-item"><strong>Released: </strong>{{movie.Released}}</li>
-                <li class="list-group-item"><strong>Genre: </strong>{{movie.Genre}}</li>
-                <li class="list-group-item"><strong>Country: </strong>{{movie.Country}}</li>
-                <li class="list-group-item"><strong>Director: </strong>{{movie.Director}}</li>
-                <li class="list-group-item"><strong>Actors: </strong>{{movie.Actors}}</li>
-                <br>
-                <h3>Movie Plot</h3>
-                {{movie.Plot}}
+        <div class="col-md-8">
+            <div class="box-divM">
+                <h1 style="margin-left: 5%; margin-top: 1%;"><b>{{movie.Title}}</b></h1>
                 <hr>
-            </ul>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-2">
-            <div *ngIf="logedUser">
-                <button type="button" class="btn btn-success" (click)="addToFavorite(movie.imdbID)">+ Add to
-                    favorites</button>
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>IMDB Rating: </strong>{{movie.imdbRating}}</li>
+                    <li class="list-group-item"><strong>Released: </strong>{{movie.Released}}</li>
+                    <li class="list-group-item"><strong>Genre: </strong>{{movie.Genre}}</li>
+                    <li class="list-group-item"><strong>Country: </strong>{{movie.Country}}</li>
+                    <li class="list-group-item"><strong>Director: </strong>{{movie.Director}}</li>
+                    <li class="list-group-item"><strong>Actors: </strong>{{movie.Actors}}</li>
+                    <br>
+                    <h3>Movie Plot</h3>
+                    {{movie.Plot}}
+                    <hr>
+                </ul>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div *ngIf="logedUser">
+                            <button type="button" style="margin-top: 5%; margin-left: 5%;" class="btn btn-success" (click)="addToFavorite(movie.imdbID)">+ Add to
+                                favorites</button>
+                        </div>
+                    </div>
+                    <div class="col-md-3" *ngIf="logedUser">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Add to other list</mat-label>
+                            <mat-select>
+                                <mat-option *ngFor="let list of serviceM.usersList" (value)="list.id" style="margin-top: 2%;">
+                                    {{list.listName}}
+                                    <button class="btn btn-success" (click)="addToUsersList(list.id, movie.imdbID)"
+                                        style="float: right;">Add to
+                                        list</button>
+                                </mat-option>
+                                <mat-option routerLink="/home/usersLists">
+                                    + Add new list
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-3" *ngIf="logedUser">
-            <mat-form-field appearance="fill">
-                <mat-label>Add to other list</mat-label>
-                <mat-select>
-                    <mat-option *ngFor="let list of serviceM.usersList" (value)="list.id">
-                        {{list.listName}}
-                        <button class="btn btn-success" (click)="addToUsersList(list.id, movie.imdbID)" style="float: right;">Add to
-                            list</button>
-                    </mat-option>
-                    <mat-option routerLink="/usersLists">
-                        + Add new list
-                    </mat-option>
-                    
-                </mat-select>
-
-            </mat-form-field>
-        </div>
-        
     </div>
 </div>

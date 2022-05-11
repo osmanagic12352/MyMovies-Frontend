@@ -12,7 +12,7 @@ export class UserService {
   userDetails: any;
   formData: User = new User();
   list: User[] = [];
-  readonly BaseURL = "http://localhost:5002/api/User/registerUser"
+  readonly BaseURL = "http://localhost:5002/api/user/registerUser"
   
   
   postUser(){
@@ -20,11 +20,11 @@ export class UserService {
   }
 
   putUser(){
-    return this.http.put(`${'http://localhost:5002/api/User/editUser_ById'}/${this.formData.id}`, this.formData);
+    return this.http.put(`${'http://localhost:5002/api/user/editUserById'}/${this.formData.id}`, this.formData);
   }
 
   listUsers(){
-    this.http.get('http://localhost:5002/api/User/getAllUsers').subscribe(
+    this.http.get('http://localhost:5002/api/user/getAllUsers').subscribe(
       (res) => {
         this.list = res as User[];
       },
@@ -34,15 +34,15 @@ export class UserService {
   }
 
   deleteUser(id:string){
-    return this.http.delete('http://localhost:5002/api/User/deleteUser_ById/' + id);
+    return this.http.delete('http://localhost:5002/api/user/deleteUserById/' + id);
   }
 
   put1User(){
-    return this.http.put(`${'http://localhost:5002/api/User/UpdateUser?password='}${this.formData.password}`, this.formData);
+    return this.http.put(`${'http://localhost:5002/api/user/updateUser?password='}${this.formData.password}`, this.formData);
   }
 
   userInfo(){
-    return this.http.get('http://localhost:5002/api/User/getLogedUser').subscribe(
+    return this.http.get('http://localhost:5002/api/user/getLogedUser').subscribe(
       (res) => {
         this.userDetails = res;
         console.log(res)

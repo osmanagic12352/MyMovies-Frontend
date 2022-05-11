@@ -1,64 +1,66 @@
-<div class="container">
+<div class="container1">
     <div *ngIf="service.movie">
-    <div *ngIf ="isShow">
-        <div class="row" >
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let movi of service.movies">
-                <div class="card" (click)="getUsersMovies(movi?.imdbId)" (click)="toggleDisplay()" >
-                    <img [src]="movi?.poster" class="card-img-top" [alt]="movi?.title">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ movi?.title | uppercase}}</h5>
-                        <p class="card-text"> {{ movi?.title }}</p>
+        <div *ngIf="isShow">
+            <div class="row">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let movi of service.movies">
+                    <div class="card" (click)="getUsersMovies(movi?.imdbId)" (click)="toggleDisplay()">
+                        <img [src]="movi?.poster" class="card-img-top" [alt]="movi?.title">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ movi?.title | uppercase}}</h5>
+                            <p class="card-text"> {{ movi?.title }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!isShow">
+            <div class="row" *ngIf="service.requests">
+                <div class="col-md-4">
+                    <img id="img1" src="{{service.requests.poster}}">
+                </div>
+                <div class="col-md-8">
+                    <div class="box-divM">
+                        <h1 style="margin-left: 5%; margin-top: 1%;"><b>{{service.requests.title}}</b></h1>
+                        <hr>
+                        <ul class="list-group">
+                            <li class="list-group-item"><strong>Released: </strong>{{service.requests.released}}</li>
+                            <li class="list-group-item"><strong>Genre: </strong>{{service.requests.genre}}</li>
+                            <li class="list-group-item"><strong>Runtime: </strong>{{service.requests.runtime}}</li>
+                            <li class="list-group-item"><strong>Released: </strong>{{service.requests.released}}</li>
+                            <br>
+                            <h3>Movie Plot</h3>
+                            {{service.requests.plot}}
+                            <hr>
+                        </ul>
+
+                        <div class="row" *ngIf="service.requests">
+                            <div class="col-md-3">
+                                <div *ngIf="logedUser">
+                                    <button type="button" class="btn btn-success" style="margin-top: 5%; margin-left: 5%;"
+                                        (click)="addToFavorite(service.requests.imdbId)">+ Add to favorites</button>
+                                </div>
+                            </div>
+                            <div class="col-md-3" *ngIf="logedUser">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Add to other list</mat-label>
+                                    <mat-select>
+                                        <mat-option *ngFor="let list of service.usersList" (value)="list.id" style="margin-top: 2%;">
+                                            {{list.listName}}
+                                            <button class="btn btn-success"
+                                                (click)="addToUsersList(list.id, service.requests.imdbId)"
+                                                style="float: right;">Add to
+                                                list</button>
+                                        </mat-option>
+                                        <mat-option routerLink="/home/usersLists">
+                                            + Add new list
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div *ngIf ="!isShow">
-        <div class="row" *ngIf="service.requests">
-            <div class="col-4">
-                <img class="poster" src="{{service.requests.poster}}">
-            </div>
-            <div class="col-8">
-                <h2>{{service.requests.title}}</h2>
-                <hr>
-                <ul class="list-group">
-                    <li class="list-group-item"><strong>Released: </strong>{{service.requests.released}}</li>
-                    <li class="list-group-item"><strong>Genre: </strong>{{service.requests.genre}}</li>
-                    <li class="list-group-item"><strong>Runtime: </strong>{{service.requests.runtime}}</li>
-                    <li class="list-group-item"><strong>Released: </strong>{{service.requests.released}}</li>
-                    <br>
-                    <h3>Movie Plot</h3>
-                    {{service.requests.plot}}
-                    <hr>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="row" *ngIf="service.requests">
-            <div class="col-2">
-                <div *ngIf="logedUser">
-                    <button type="button" class="btn btn-success" (click)="addToFavorite(service.requests.imdbId)">+ Add to favorites</button>
-                </div>
-            </div>
-            <div class="col-3" *ngIf="logedUser">
-                <mat-form-field appearance="fill">
-                    <mat-label>Add to other list</mat-label>
-                    <mat-select>
-                        <mat-option *ngFor="let list of service.usersList" (value)="list.id">
-                            {{list.listName}}
-                            <button class="btn btn-success" (click)="addToUsersList(list.id, service.requests.imdbId)"
-                                style="float: right;">Add to
-                                list</button>
-                        </mat-option>
-                        <mat-option routerLink="/usersLists">
-                            + Add new list
-                        </mat-option>
-
-                    </mat-select>
-
-                </mat-form-field>
-            </div>
-        </div>
-    </div>
-</div>
 </div>
